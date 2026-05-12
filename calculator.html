@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h4>Tinggi Badan*</h4>
+  <input type="text" id="tb" placeholder="cm">
+  
+  <h4>Berat Badan*</h4>
+  <input type="text" id="bb" placeholder="kg">
+
+  <button id="btn" onclick="hitungBmi()">=</button>
+  <div class="hasil" id="hasil"></div>
+  <div id="gambarHasil"></div>
+  
+  <script>
+  const tampil = document.getElementById("hasil");
+  const gambarHasil = document.getElementById("gambarHasil");
+
+  function hitungBmi() {
+    const bb = parseInt(document.getElementById("bb").value);
+    const tbCm = parseInt(document.getElementById("tb").value);
+
+    const tbM = tbCm / 100;
+    const hasil = bb / (tbM * tbM);
+
+    let kategori = "";
+    let gambarSrc = "";
+
+    if (hasil < 18.5) {
+      kategori = "Berat Badan Kurang (Underweight)";
+      gambarSrc = "kurus.jpg";
+
+    } else if (hasil >= 18.5 && hasil < 22.9) {
+      kategori = "Normal (Ideal)";
+      gambarSrc = "ideal.jpg";
+
+    } else if (hasil >= 23.0 && hasil < 24.9) {
+      kategori = "Berat Badan Berlebih (Overweight)";
+      gambarSrc = "overweight (2).jpg";
+
+    } else if (hasil >= 25 && hasil < 29.9) {
+      kategori = "Obesitas Tingkat I";
+      gambarSrc = "obesitas1(2).jpg";
+
+    } else {
+      kategori = "Obesitas Tingkat II";
+      gambarSrc = "obesitas2(1).jpg";
+    }
+
+    tampil.innerHTML = `
+      Hasil BMI Anda: ${hasil.toFixed(1)}<br>
+      Kategori: ${kategori}
+    `;
+
+    gambarHasil.innerHTML = `
+      <img src="${gambarSrc}" width="200">
+    `;
+  }
+</script>
+
+</body>
+</html>
