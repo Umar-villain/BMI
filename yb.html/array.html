@@ -6,16 +6,78 @@
     <title>Document</title>
 </head>
 <body>
+    <p>Masukkan siswa baru</p>
+    <input type="text" id="inputNama">
+    <button onclick="tambahData()">Tambah</button>
+
+    <div id="wadah">
+
+    </div>
     
 
-    <script>
-        let nama = ["siswa1", "siswa2", "siswa3"];
+    <!-- <script>
+        let nama = ['siswa1', 'siswa2', 'siswa3'];
+        let wadah = document.getElementById("wadah");
 
-        console.log(nama);
+        function tambahData() {
+            let namaBaru = document.getElementById("inputNama").value;
+            nama.push(namaBaru);
+            nama.forEach(element => {
+                wadah.innerHTML = '';
+                let text = document.createElement('p');
+                text.innerText = element;
+                wadah.appendChild(text);
+            })
+        }
 
-        nama.push('siswa4');
+        nama.forEach(element => {
+            let text = document.createElement('p');
+            text.innerText = element;
+            wadah.appendChild(text);
+        })
+    </script> -->
+    <!-- <script>
+    let nama = ['siswa1', 'siswa2', 'siswa3'];
+    let wadah = document.getElementById("wadah");
 
-        console.log(nama);
-    </script>
+    function tampilkanData() {
+        wadah.innerHTML = '';
+
+        nama.forEach(element => {
+            let text = document.createElement('p');
+            text.innerText = element;
+            wadah.appendChild(text);
+        });
+    }
+
+    function tambahData() {
+        let namaBaru = document.getElementById("inputNama").value;
+
+        nama.push(namaBaru);
+
+        tampilkanData();
+    }
+
+    tampilkanData();
+</script> -->
+<script>
+    let nama = ['siswa1', 'siswa2', 'siswa3'];
+    let wadah = document.getElementById("wadah");
+
+    function tampil() {
+        wadah.innerHTML = "";
+
+        nama.forEach(n => {
+            wadah.innerHTML += `<p>${n}</p>`;
+        });
+    }
+
+    function tambahData() {
+        nama.push(document.getElementById("inputNama").value);
+        tampil();
+    }
+
+    tampil();
+</script>
 </body>
 </html>
