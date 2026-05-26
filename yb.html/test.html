@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>Rumus Luas Trapesium yaitu</h1>
+    <h1><p>L=1/2*(S1+S2)*t</p></h1>
+    
+    <h1>Sisi A</h1>
+    <input type="text" id="s1">
+    <h1>Sisi B</h1>
+    <input type="text" id="s2">
+    <h1>Tinggi</h1>
+    <input type="text" id="t">
+
+    <button id="bt" onclick="Luas()">=</button>
+    <h1 id="tampil"></h1>
+
+    <script>
+        const tampil = document.getElementById("tampil");
+        function Luas() {
+            const s1 = parseInt(document.getElementById("s1").value);
+            const s2 = parseInt(document.getElementById("s2").value);
+            const t = parseInt(document.getElementById("t").value);
+            const luas = 0.5 * (s1 + s2) * t;
+            tampil.innerHTML = "Luas Trapesium = " + luas;
+        }
+    </script>
+</body>
+</html>
