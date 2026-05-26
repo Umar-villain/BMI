@@ -3,46 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ian ganteng</title>
+    <title>Data Siswa</title>
 </head>
 <body>
-    <button onclick="ian()">
-        Secret
-    </button>
-    <input type="text" id="input1" placeholder="Masukan Berat Badan">
-    <input type="text" id="input2" placeholder="Masukan Tinggi Badan">
-    
+
+    <p>Masukkan nama siswa</p>
+
+    <input type="text" id="inputNama">
+    <button id="tombolTambah">Tambah</button>
+
+    <div id="wadah"></div>
+
     <script>
-        function ian (){
-            let input1 = document.getElementById("input1");
-            let input2 = document.getElementById("input2");
-            let Hasil_Input_1 = parseInt(input1.value);
-            let Hasil_Input_2 = parseInt(input2.value);
-            let Tinggi_Badan = Hasil_Input_2 / 100;
-            let total_akhir = Hasil_Input_1 / (Tinggi_Badan * Tinggi_Badan)
-            total_akhir = total_akhir.toFixed(1)
-            console.log(total_akhir)
-            
-            document.write(total_akhir)
-            
-            if (total_akhir < 18.5) {
-                document.write(" = Kurus");
-                let gambar = document.createElement('img');
-                gambar.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Skeleton.jpg/250px-Skeleton.jpg'
 
+        const nama = [];
 
-            } else if (total_akhir > 18.6 && total_akhir < 24.9) {
-                document.write(" = Bagus dan Ideal");
-            
-            } else if (total_akhir > 25 && total_akhir < 30) {
-                document.write(" = gemuk");
-            
-            } else if (total_akhir < 30) {
-                document.write(" = obesitas");
-            }
+        const wadah = document.getElementById('wadah');
+        const inputNama = document.getElementById('inputNama');
+        const tombolTambah = document.getElementById('tombolTambah');
+
+        function tampilkanData() {
+
+            wadah.innerHTML = '';
+
+            nama.forEach((item, index) => {
+
+                const baris = document.createElement('div');
+                const text = document.createElement('span');
+                const tombolHapus = document.createElement('button');
+
+                text.textContent = item;
+                tombolHapus.textContent = 'Hapus';
+
+                tombolHapus.onclick = function () {
+                    nama.splice(index, 1);
+                    tampilkanData();
+                }
+
+                baris.appendChild(text);
+                baris.appendChild(tombolHapus);
+
+                wadah.appendChild(baris);
+            });
         }
+
+        function tambahData() {
+
+            let namaBaru = inputNama.value.trim();
+
+            if (namaBaru === '') {
+                return;
+            }
+
+            let hitung = 0;
+
+            nama.forEach(function(item) {
+
+                if (item.startsWith(namaBaru)) {
+                    hitung++;
+                }
+
+            });
+
+            if (hitung > 0) {
+                namaBaru = namaBaru + ' (' + hitung + ')';
+            }
+
+            nama.push(namaBaru);
+
+            inputNama.value = '';
+
+            tampilkanData();
+        }
+
+        tombolTambah.onclick = tambahData;
+
+        tampilkanData();
+
     </script>
-     <div id ="Hasil"> </div>
 
 </body>
 </html>
